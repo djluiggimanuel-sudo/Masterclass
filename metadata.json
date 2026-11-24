@@ -1,0 +1,6 @@
+{
+  "name": "Crea, Edita y Conecta",
+  "description": "Landing page y registro para el workshop en vivo de edición de video y creación de contenido: Crea, Edita y Conecta.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

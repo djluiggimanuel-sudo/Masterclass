@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: #0B0C18;
+    color: #F4F6FB;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+.studio-ambient-bg {
+  background-color: #0B0C18;
+  background-image:
+    radial-gradient(circle at 82% 18%, rgba(91, 69, 168, 0.36) 0%, rgba(91, 69, 168, 0.08) 38%, transparent 62%),
+    radial-gradient(circle at 12% 52%, rgba(94, 34, 72, 0.30) 0%, rgba(94, 34, 72, 0.06) 36%, transparent 60%),
+    radial-gradient(circle at 54% 85%, rgba(12, 74, 96, 0.28) 0%, transparent 55%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

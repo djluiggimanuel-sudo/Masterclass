@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Check, CreditCard, Lock, ShieldCheck, X } from 'lucide-react';
+import { Check, CreditCard, Lock, MessageCircle, ShieldCheck, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { saveStoredRegistration } from '../utils/registration';
 
 export interface RegistrationData {
   id: string;
@@ -42,24 +43,17 @@ export function PaymentPreviewModal({
 
   const isPaid = registration.status === 'paid';
 
-  async function handleConfirmPayment() {
+  function handleConfirmPayment() {
     if (!registration) return;
     setSubmitting(true);
     setError(null);
-    try {
-      const response = await fetch(`/api/registration/${registration.folio}/confirm-payment`, {
-        method: 'POST',
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.error || 'No se pudo confirmar el pago.');
-      }
-      onPaymentConfirmed(data.registration);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error al procesar la confirmación.');
-    } finally {
-      setSubmitting(false);
-    }
+    const updated: RegistrationData = {
+      ...registration,
+      status: 'paid',
+    };
+    saveStoredRegistration(updated);
+    onPaymentConfirmed(updated);
+    setSubmitting(false);
   }
 
   return (
@@ -201,16 +195,28 @@ export function PaymentPreviewModal({
                 </p>
               )}
 
-              <button
-                type="button"
-                disabled={submitting}
-                onClick={handleConfirmPayment}
-                className="w-full rounded-lg bg-[#12D6EB] px-4 py-3 text-sm font-bold text-[#07101C] transition-colors duration-150 hover:bg-[#3CE1F2] disabled:opacity-60"
-              >
-                {submitting
-                  ? 'Confirmando reserva...'
-                  : `Confirmar pago · ${formatCop(registration.amountCop)}`}
-              </button>
+              <div className="flex flex-col gap-2.5">
+                <a
+                  href={registration.paymentUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#12D6EB] px-4 py-3 text-sm font-bold text-[#07101C] transition-colors duration-150 hover:bg-[#3CE1F2]"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Solicitar link de pago por WhatsApp (310 218 3451)
+                </a>
+
+                <button
+                  type="button"
+                  disabled={submitting}
+                  onClick={handleConfirmPayment}
+                  className="w-full rounded-lg border border-white/15 bg-[#0B0C18] px-4 py-2.5 text-xs font-semibold text-[#D6DCF0] transition-colors duration-150 hover:border-white/30 hover:text-white disabled:opacity-60"
+                >
+                  {submitting
+                    ? 'Guardando estado...'
+                    : `Marcar como pagado (${formatCop(registration.amountCop)})`}
+                </button>
+              </div>
             </div>
           )}
         </motion.div>

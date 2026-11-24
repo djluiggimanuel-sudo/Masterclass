@@ -9,6 +9,7 @@ import { OutcomesAndFaq } from './components/OutcomesAndFaq';
 import { RegistrationSection } from './components/RegistrationSection';
 import { PaymentPreviewModal, type RegistrationData } from './components/PaymentPreviewModal';
 import { PROBLEM_POINTS, WORKSHOP_LOGISTICS } from './data/workshop';
+import { loadStoredRegistration, saveStoredRegistration } from './utils/registration';
 
 const HERO_STUDIO_IMAGE = '/src/assets/images/workshop_editing_desk_1795207150826.jpg';
 
@@ -18,35 +19,26 @@ export default function App() {
   const [heroImgError, setHeroImgError] = useState(false);
 
   useEffect(() => {
-    let active = true;
-    const params = new URLSearchParams(window.location.search);
-    const folioParam = params.get('pago');
-    if (!folioParam) return;
-
-    fetch(`/api/registration/${encodeURIComponent(folioParam)}`)
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (active && data?.registration) {
-          setActiveRegistration(data.registration);
-          setModalRegistration(data.registration);
-        }
-      })
-      .catch(() => {
-        // Ignore invalid folio on load
-      });
-
-    return () => {
-      active = false;
-    };
+    const stored = loadStoredRegistration();
+    if (stored) {
+      setActiveRegistration(stored);
+    }
   }, []);
 
   function handleRegistered(record: RegistrationData) {
     setActiveRegistration(record);
+    saveStoredRegistration(record);
   }
 
   function handlePaymentConfirmed(updated: RegistrationData) {
     setActiveRegistration(updated);
     setModalRegistration(updated);
+    saveStoredRegistration(updated);
+  }
+
+  function handleResetRegistration() {
+    setActiveRegistration(null);
+    saveStoredRegistration(null);
   }
 
   const { scrollYProgress } = useScroll();
@@ -277,7 +269,7 @@ export default function App() {
             onRegistered={handleRegistered}
             onOpenPaymentModal={(record) => setModalRegistration(record)}
             activeRegistration={activeRegistration}
-            onResetRegistration={() => setActiveRegistration(null)}
+            onResetRegistration={handleResetRegistration}
           />
 
           {/* 9. LLAMADO FINAL */}

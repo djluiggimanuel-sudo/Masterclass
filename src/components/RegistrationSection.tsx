@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { WORKSHOP_LOGISTICS } from '../data/workshop';
+import { createClientRegistration } from '../utils/registration';
 import type { RegistrationData } from './PaymentPreviewModal';
 
 interface RegistrationSectionProps {
@@ -75,26 +76,18 @@ export function RegistrationSection({
 
     setSubmitting(true);
     try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName: fullName.trim(),
-          email: email.trim(),
-          countryCode,
-          whatsapp: digits,
-          profile,
-          plan,
-          deliveryChannel,
-        }),
+      const registration = createClientRegistration({
+        fullName: fullName.trim(),
+        email: email.trim(),
+        countryCode,
+        whatsapp: digits,
+        profile,
+        plan,
+        deliveryChannel,
       });
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.error || 'No se pudo completar tu registro.');
-      }
-      onRegistered(data.registration);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Ocurrió un error al registrar tus datos.');
+      onRegistered(registration);
+    } catch {
+      setError('Ocurrió un error al generar tu enlace de WhatsApp. Inténtalo de nuevo.');
     } finally {
       setSubmitting(false);
     }

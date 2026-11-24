@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { BlackFridayHeroBanner } from './components/BlackFridayHeroBanner';
 import { InteractiveTimeline } from './components/InteractiveTimeline';
 import { CurriculumSection } from './components/CurriculumSection';
+import { InstructorsSection } from './components/InstructorsSection';
 import { OutcomesAndFaq } from './components/OutcomesAndFaq';
 import { RegistrationSection } from './components/RegistrationSection';
 import { PaymentPreviewModal, type RegistrationData } from './components/PaymentPreviewModal';
@@ -111,6 +112,8 @@ export default function App() {
 
                 <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-white/10 pt-5 text-xs font-medium text-[#B8C0D9]">
                   <span className="text-[#12D6EB]">3, 4 y 5 de diciembre · 6:00 p. m.</span>
+                  <span aria-hidden="true">·</span>
+                  <span className="text-[#FF5D8F]">Cupos limitados: solo 30</span>
                   <span aria-hidden="true">·</span>
                   <span>Black Friday: $100.000 COP</span>
                   <span aria-hidden="true">·</span>
@@ -261,6 +264,9 @@ export default function App() {
           {/* 4. LO QUE APRENDERÁS (3 MÓDULOS) & 5. ¿PARA QUIÉN ES? */}
           <CurriculumSection />
 
+          {/* QUIÉNES DAN LA CLASE (SECCIÓN POR PROFESOR) */}
+          <InstructorsSection />
+
           {/* 6. EXPERIENCIA DEL WORKSHOP & 8. PREGUNTAS FRECUENTES */}
           <OutcomesAndFaq />
 
@@ -281,7 +287,9 @@ export default function App() {
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
               className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8"
             >
-              <p className="text-sm font-semibold text-[#FF5D8F]">Es momento de empezar</p>
+              <p className="text-sm font-semibold text-[#FF5D8F]">
+                Cupos limitados · Solo 30 participantes
+              </p>
               <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight tracking-tight text-[#F4F6FB] text-balance sm:text-5xl">
                 Tu próxima gran idea merece convertirse en contenido. Es momento de{' '}
                 <span className="text-[#12D6EB]">crear, editar y conectar</span>.
@@ -328,10 +336,12 @@ export default function App() {
                 Inversión
               </a>
               <a
-                href={`mailto:${WORKSHOP_LOGISTICS.contactEmail}`}
+                href={`https://wa.me/${WORKSHOP_LOGISTICS.organizerWhatsappNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="font-semibold text-[#12D6EB] hover:underline"
               >
-                {WORKSHOP_LOGISTICS.contactEmail}
+                WhatsApp: 310 218 3451
               </a>
             </div>
           </div>

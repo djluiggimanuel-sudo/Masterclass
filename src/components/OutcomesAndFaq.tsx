@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Calendar, ChevronDown, Clock, Compass, Video } from 'lucide-react';
+import { Calendar, ChevronDown, Clock, Compass, Users, Video } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FAQS, WORKSHOP_LOGISTICS } from '../data/workshop';
 
@@ -13,6 +13,7 @@ export function OutcomesAndFaq() {
     { icon: Calendar, label: 'Fechas confirmadas', value: WORKSHOP_LOGISTICS.fecha },
     { icon: Clock, label: 'Horario', value: WORKSHOP_LOGISTICS.horario },
     { icon: Compass, label: 'Modalidad', value: WORKSHOP_LOGISTICS.modalidad },
+    { icon: Users, label: 'Cupos limitados', value: WORKSHOP_LOGISTICS.cupos },
   ];
 
   return (
@@ -50,7 +51,7 @@ export function OutcomesAndFaq() {
               <p className="text-xs font-semibold text-[#9BA4C2]">
                 Agenda e información de la edición
               </p>
-              <dl className="mt-4 grid gap-4 sm:grid-cols-3">
+              <dl className="mt-4 grid gap-4 sm:grid-cols-2">
                 {logisticsFields.map((item, idx) => {
                   const IconComponent = item.icon;
                   return (

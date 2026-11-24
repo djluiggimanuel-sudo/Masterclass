@@ -1,7 +1,13 @@
-import { ArrowRight, Camera, Film, Play, Scissors, Smartphone } from 'lucide-react';
+import { ArrowRight, Camera, Film, Play, Scissors, Smartphone, Users } from 'lucide-react';
 import { motion } from 'motion/react';
+import { WORKSHOP_LOGISTICS } from '../data/workshop';
 
 export function BlackFridayHeroBanner() {
+  const totalSeats = Math.max(1, WORKSHOP_LOGISTICS.cuposTotales);
+  const occupiedSeats = Math.min(totalSeats, Math.max(0, WORKSHOP_LOGISTICS.cuposOcupados));
+  const availableSeats = Math.max(0, totalSeats - occupiedSeats);
+  const availableRatio = availableSeats / totalSeats;
+  const isSoldOut = availableSeats === 0;
   return (
     <section
       aria-label="Banner principal promoción Black Friday"
@@ -39,7 +45,7 @@ export function BlackFridayHeroBanner() {
         />
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         {/* Left Floating Studio Element: Angled 9:16 Vertical Reel Frame */}
         <motion.div
           aria-hidden="true"
@@ -167,7 +173,7 @@ export function BlackFridayHeroBanner() {
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="font-mono text-xs font-bold tracking-[0.15em] text-[#12D6EB] uppercase"
           >
-            Workshop 3, 4 y 5 de diciembre · 6:00 p. m. · Promo del 21 al 28 de nov
+            Workshop 3, 4 y 5 de diciembre · 6:00 p. m. · Cupos limitados (solo 30) · Promo 21 al 28 nov
           </motion.p>
 
           <motion.div
@@ -262,6 +268,57 @@ export function BlackFridayHeroBanner() {
               CONOCER EL WORKSHOP
             </motion.a>
           </motion.div>
+          {/* Barra animada de cupos disponibles integrada en el banner principal */}
+          <motion.div
+            id="cupos"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}
+            className="mx-auto mt-7 max-w-lg rounded-2xl border border-white/15 bg-[#131526]/85 px-5 py-4 text-left shadow-xl backdrop-blur-sm"
+          >
+            <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
+              <span className="flex items-center gap-1.5 font-semibold text-[#F4F6FB]">
+                <Users className="h-3.5 w-3.5 text-[#12D6EB]" />
+                {isSoldOut
+                  ? 'Todos los cupos están reservados'
+                  : `Quedan ${availableSeats} de ${totalSeats} cupos disponibles`}
+              </span>
+              <span className="font-mono text-[11px] font-semibold text-[#12D6EB] tabular-nums">
+                {availableSeats} disponibles · {occupiedSeats} reservados
+              </span>
+            </div>
+
+            <div
+              role="progressbar"
+              aria-label="Cupos disponibles en el workshop"
+              aria-valuenow={availableSeats}
+              aria-valuemin={0}
+              aria-valuemax={totalSeats}
+              className="relative mt-2.5 h-3.5 w-full overflow-hidden rounded-full border border-white/10 bg-[#0B0C18]"
+            >
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: availableRatio }}
+                transition={{ duration: 0.9, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                style={{ transformOrigin: 'left center' }}
+                className="relative h-full w-full overflow-hidden rounded-full bg-gradient-to-r from-[#7C6BF5] via-[#12D6EB] to-[#FF5D8F]"
+              >
+                <motion.div
+                  aria-hidden="true"
+                  animate={{ x: ['-100%', '220%'] }}
+                  transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut', repeatDelay: 1.4 }}
+                  className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/35 to-transparent"
+                />
+              </motion.div>
+            </div>
+
+            <div className="mt-1.5 flex justify-between font-mono text-[10px] text-[#8D96B5] tabular-nums">
+              <span>0</span>
+              <span>10</span>
+              <span>20</span>
+              <span>{totalSeats} cupos máximo</span>
+            </div>
+          </motion.div>
         </div>
 
         {/* Bottom signature 3-track mini timeline motif with subtle stagger */}
@@ -269,8 +326,8 @@ export function BlackFridayHeroBanner() {
           aria-hidden="true"
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 0.85, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mt-12 max-w-xl space-y-1.5 sm:mt-14"
+          transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto mt-8 max-w-xl space-y-1.5 sm:mt-10"
         >
           <div className="flex gap-1.5">
             <div className="h-2 w-[28%] rounded-full bg-[#7C6BF5]" />

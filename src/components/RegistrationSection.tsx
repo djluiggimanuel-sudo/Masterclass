@@ -127,12 +127,16 @@ export function RegistrationSection({
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className="max-w-2xl"
       >
-        <p className="text-sm font-semibold text-[#FF5D8F]">Inversión e inscripciones</p>
+        <p className="text-sm font-semibold text-[#FF5D8F]">
+          Inversión e inscripciones · Cupos limitados (solo 30)
+        </p>
         <h2 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-[#F4F6FB] text-balance sm:text-4xl">
           Aprovecha la promoción de Black Friday y asegura tu cupo
         </h2>
         <p className="mt-3 text-base leading-relaxed text-[#B8C0D9]">
-          Sesiones los días <span className="font-semibold text-[#F4F6FB]">3, 4 y 5 de diciembre a las 6:00 p. m.</span>{' '}
+          Sesiones virtuales los días{' '}
+          <span className="font-semibold text-[#F4F6FB]">3, 4 y 5 de diciembre a las 6:00 p. m.</span>{' '}
+          con un límite de <span className="font-semibold text-[#F4F6FB]">30 participantes</span>.
           Promoción Black Friday del 21 al 28 de noviembre por{' '}
           <span className="font-bold text-[#12D6EB]">$100.000 COP</span> (precio regular $180.000
           COP).
@@ -183,6 +187,10 @@ export function RegistrationSection({
               <li className="flex items-center gap-2">
                 <Check className="h-4 w-4 shrink-0 text-[#12D6EB]" />
                 <span>Módulo 1 CREA · Módulo 2 EDITA · Módulo 3 CONECTA</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Check className="h-4 w-4 shrink-0 text-[#12D6EB]" />
+                <span>Cupos limitados: máximo 30 participantes</span>
               </li>
               <li className="flex items-center gap-2">
                 <Check className="h-4 w-4 shrink-0 text-[#12D6EB]" />

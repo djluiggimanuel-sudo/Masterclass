@@ -8,6 +8,7 @@ export function Navbar() {
   const navLinks = [
     { href: '#problema', label: 'El problema' },
     { href: '#modulos', label: 'Módulos' },
+    { href: '#profesores', label: 'Profesores' },
     { href: '#inversion', label: 'Inversión' },
     { href: '#preguntas', label: 'Preguntas' },
   ];

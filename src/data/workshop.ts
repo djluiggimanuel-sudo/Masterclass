@@ -5,11 +5,14 @@ export const WORKSHOP_LOGISTICS = {
   fecha: '3, 4 y 5 de diciembre',
   horario: '6:00 p. m.',
   modalidad: 'Virtual',
+  cupos: 'Solo 30 participantes',
+  /** Cambia `cuposOcupados` (de 0 a 30) para actualizar la barra animada de cupos disponibles */
+  cuposTotales: 30,
+  cuposOcupados: 3,
   /** Número de WhatsApp organizador (+57 3102183451). */
   organizerWhatsappNumber: '573102183451',
   /** Si tienes un enlace externo de pasarela (Wompi, MercadoPago, PayU, Bold, Stripe), colócalo aquí. */
   externalPaymentUrl: '',
-  contactEmail: 'hola@creaeditaconecta.com',
 };
 
 export interface ProblemPoint {
@@ -262,6 +265,57 @@ export const FAQS: FaqItem[] = [
   {
     question: '¿Cómo funciona la inscripción y la promoción de Black Friday?',
     answer:
-      'El workshop se realizará los días 3, 4 y 5 de diciembre a las 6:00 p. m. Del sábado 21 al sábado 28 de noviembre tienes tarifa especial de Black Friday por $100.000 COP (precio regular: $180.000 COP). Puedes registrarte directamente en esta página para generar tu reserva y recibir tu enlace de pago o continuar la confirmación por WhatsApp.',
+      'El workshop se realizará en modalidad virtual los días 3, 4 y 5 de diciembre a las 6:00 p. m. y cuenta con cupos limitados para solo 30 participantes. Del sábado 21 al sábado 28 de noviembre tienes tarifa especial de Black Friday por $100.000 COP (precio regular: $180.000 COP). Puedes registrarte directamente en esta página para generar tu reserva y recibir tu enlace de pago por WhatsApp.',
   },
 ];
+
+export interface InstructorProfile {
+  id: string;
+  orderLabel: string;
+  name: string;
+  roles: string;
+  age: string;
+  experienceSummary: string;
+  focusSummary: string;
+  photoUrl: string;
+  photoAlt: string;
+  paragraphs: string[];
+  objective: string;
+  specializations: string[];
+}
+
+export const INSTRUCTORS: InstructorProfile[] = [
+  {
+    id: 'luis-infante',
+    orderLabel: 'Profesor 01',
+    name: 'LUIS INFANTE',
+    roles: 'Productor Audiovisual | Diseñador Gráfico | Creador de Contenido Digital',
+    age: '34 años',
+    experienceSummary: '+10 años en diseño gráfico · +5 años en producción audiovisual',
+    focusSummary: 'Videopodcasts, contenido para redes sociales y soluciones audiovisuales',
+    photoUrl: '/assets/aistudio/Retrato_cinematogr_fico_en_tonos_oscuros_596efea1.png',
+    photoAlt: 'Retrato profesional de Luis Infante, productor audiovisual y diseñador gráfico',
+    paragraphs: [
+      'Profesional creativo de 34 años, especializado en producción audiovisual, diseño gráfico y comunicación digital, con más de 10 años de experiencia en diseño gráfico y más de 5 años en producción y realización audiovisual.',
+      'A lo largo de mi trayectoria he desarrollado habilidades en conceptualización, dirección creativa, producción y edición de contenidos visuales, combinando creatividad, criterio estético y conocimientos técnicos para transformar ideas en piezas de comunicación atractivas y efectivas.',
+      'Mi trabajo se enfoca especialmente en la producción de videopodcasts, creación de contenido para redes sociales y desarrollo de soluciones audiovisuales para marcas, empresas y creadores de contenido.',
+      'Cuento con experiencia en planificación y ejecución de proyectos audiovisuales, manejo de cámaras, iluminación, captura de audio, edición de video, diseño de identidad visual y desarrollo de piezas gráficas para medios digitales.',
+      'Me caracterizo por ser una persona creativa, proactiva, versátil y orientada a resultados, con capacidad para adaptarme a diferentes estilos de comunicación, trabajar en equipo y asumir proyectos desde la conceptualización hasta la entrega final.',
+    ],
+    objective:
+      'Desarrollar contenidos y experiencias visuales que comuniquen, conecten con las audiencias y aporten valor a las marcas, combinando estrategia, creatividad y tecnología.',
+    specializations: [
+      'Producción y realización audiovisual.',
+      'Producción y edición de videopodcasts.',
+      'Creación de contenido para redes sociales.',
+      'Dirección y conceptualización creativa.',
+      'Diseño gráfico y comunicación visual.',
+      'Edición y postproducción de video.',
+      'Fotografía y manejo de cámaras.',
+      'Iluminación y producción de sets.',
+      'Identidad visual y branding.',
+      'Desarrollo de contenido digital para marcas y empresas.',
+    ],
+  },
+];
+

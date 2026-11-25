@@ -9,8 +9,8 @@ export const WORKSHOP_LOGISTICS = {
   /** Cambia `cuposOcupados` (de 0 a 30) para actualizar la barra animada de cupos disponibles */
   cuposTotales: 30,
   cuposOcupados: 3,
-  /** Número de WhatsApp organizador (+57 3102183451). */
-  organizerWhatsappNumber: '573102183451',
+  /** Número de WhatsApp organizador (+57 3188715994). */
+  organizerWhatsappNumber: '573188715994',
   /** Si tienes un enlace externo de pasarela (Wompi, MercadoPago, PayU, Bold, Stripe), colócalo aquí. */
   externalPaymentUrl: '',
 };

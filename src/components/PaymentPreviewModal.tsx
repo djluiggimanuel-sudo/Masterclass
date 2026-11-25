@@ -197,13 +197,13 @@ export function PaymentPreviewModal({
 
               <div className="flex flex-col gap-2.5">
                 <a
-                  href={registration.paymentUrl}
+                  href={registration.paymentUrl.replace('https://wa.me/573102183451', 'https://wa.me/573188715994')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#12D6EB] px-4 py-3 text-sm font-bold text-[#07101C] transition-colors duration-150 hover:bg-[#3CE1F2]"
                 >
                   <MessageCircle className="h-4 w-4" />
-                  Solicitar link de pago por WhatsApp (310 218 3451)
+                  Solicitar link de pago por WhatsApp (318 871 5994)
                 </a>
 
                 <button

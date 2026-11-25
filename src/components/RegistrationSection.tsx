@@ -103,11 +103,11 @@ export function RegistrationSection({
     }
   }
 
-  const targetWhatsappNumber = WORKSHOP_LOGISTICS.organizerWhatsappNumber || '573102183451';
+  const targetWhatsappNumber = WORKSHOP_LOGISTICS.organizerWhatsappNumber || '573188715994';
 
   const whatsappHref = activeRegistration
     ? activeRegistration.paymentUrl.startsWith('https://wa.me/')
-      ? activeRegistration.paymentUrl
+      ? activeRegistration.paymentUrl.replace('https://wa.me/573102183451', `https://wa.me/${targetWhatsappNumber}`)
       : `https://wa.me/${targetWhatsappNumber}?text=${encodeURIComponent(
           `Hola, acabo de registrarme al workshop CREA, EDITA Y CONECTA (3, 4 y 5 de diciembre · 6:00 p. m.) y quiero recibir mi link de pago.\nFolio: ${activeRegistration.folio}\nNombre: ${activeRegistration.fullName}\nTarifa: ${activeRegistration.planLabel} ($${activeRegistration.amountCop.toLocaleString('es-CO')} COP)`
         )}`
@@ -320,7 +320,7 @@ export function RegistrationSection({
                   htmlFor="generated-payment-url"
                   className="block text-xs font-semibold text-[#B8C0D9]"
                 >
-                  Tu enlace directo al chat de WhatsApp (310 218 3451) para recibir el link de pago
+                  Tu enlace directo al chat de WhatsApp (318 871 5994) para recibir el link de pago
                 </label>
                 <div className="mt-2 flex flex-col gap-2 sm:flex-row">
                   <input
@@ -358,7 +358,7 @@ export function RegistrationSection({
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#12D6EB] px-5 py-3 text-xs font-bold tracking-wide text-[#07101C] transition-colors hover:bg-[#3CE1F2]"
                 >
                   <MessageCircle className="h-4 w-4" />
-                  IR AL CHAT DE WHATSAPP (310 218 3451)
+                  IR AL CHAT DE WHATSAPP (318 871 5994)
                 </a>
 
                 <button

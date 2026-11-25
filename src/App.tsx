@@ -341,7 +341,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="font-semibold text-[#12D6EB] hover:underline"
               >
-                WhatsApp: 310 218 3451
+                WhatsApp: 318 871 5994
               </a>
             </div>
           </div>

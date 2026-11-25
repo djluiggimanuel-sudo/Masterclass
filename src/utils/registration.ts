@@ -39,7 +39,7 @@ export interface CreateRegistrationInput {
 export function createClientRegistration(input: CreateRegistrationInput): RegistrationData {
   const folio = generateFolio();
   const planDetails = PLAN_PRICING[input.plan];
-  const organizerPhone = WORKSHOP_LOGISTICS.organizerWhatsappNumber || '573102183451';
+  const organizerPhone = WORKSHOP_LOGISTICS.organizerWhatsappNumber || '573188715994';
   const formattedPrice = `$${planDetails.amountCop.toLocaleString('es-CO')} COP`;
 
   const whatsappMessage = [
